@@ -17,6 +17,7 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
 }
 ion-icon{
     font-size: 23px;
@@ -92,6 +93,7 @@ ion-icon{
 }
 .flashcards{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -99,7 +101,10 @@ ion-icon{
     overflow-y: auto;
     color: #333333;
     text-decoration: none;
-    margin-bottom: 70px;;
+    top: 0;
+    bottom: 0;
+    padding-bottom: 70px;
+    margin-bottom: 70px;
 }
 .flashcard{
     width: 300px;
@@ -252,7 +257,6 @@ footer strong{
         overflow-y: auto;
         color: #333333;
         text-decoration: none;
-        margin-bottom: 70px;;
     }
     .flashcard{
         width: 567px;
