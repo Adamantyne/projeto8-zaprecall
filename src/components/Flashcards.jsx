@@ -10,14 +10,12 @@ function Flashcards(props) {
                 return (
                     <FlashcardState
                         key={ask}
-                        objectSize={ObjectFlashcards.length}
                         propsIndex={index}
                         propsAsk={ask}
                         propsAnswer={answer}
                         updateValue={updateValue}
                         callback={(value) => { setUpdate(value); }}
                         answeredFeedback={answeredFeedback}
-                        updating={updating}
                     />
                 );
             })
@@ -26,7 +24,7 @@ function Flashcards(props) {
     );
 }
 function FlashcardState(props) {
-    const { objectSize, propsIndex, propsAsk, propsAnswer, callback, updateValue, updating } = props
+    const { propsIndex, propsAsk, propsAnswer, callback, updateValue } = props
     const icons = [
         <ion-icon style={{ color: "#333333" }} name="play-outline"></ion-icon>,
         <ion-icon style={{ color: "#FF3030" }} name="close-circle"></ion-icon>,
@@ -36,7 +34,6 @@ function FlashcardState(props) {
     const [state, setState] = React.useState("closed");
     const [colorAnswered, setColorAnswered] = React.useState(["#333333", "none", icons[0]]);
 
-    updating(updateValue, objectSize, propsIndex, callback);
 
     function answered(color, icon) {
         answeredFeedback(color, icon, setColorAnswered, setState, updateValue, callback);
@@ -54,19 +51,7 @@ function FlashcardState(props) {
     );
 }
 
-function updating(updateValue, objectSize, propsIndex, callback) {
-    setTimeout(()=>{
-        if (updateValue === false && objectSize === propsIndex + 1) {
-            callback({
-                mistake: 0,
-                initialNumber: 0,
-                maxNumber: objectSize,
-                iconsAnswered: [],
-            })
-        }
-    },300);
-    
-}
+
 function answeredFeedback(color, icon, setColorAnswered, setState, updateValue, callback) {
     setColorAnswered([color, "line-through", icon]);
     setState("answered");
